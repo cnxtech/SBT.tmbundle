@@ -44,13 +44,16 @@ while lines:
         else:
             short_name = fn
 
-        colInd = 0
-        if lines[1][-2] == "^":
-            carrotLine = lines[1].rstrip()
-            brktInd = carrotLine.find("]")
-            colInd = len(carrotLine[(brktInd + 2):])
-        else:
-            print "Couldn't find carrot in:", lines[1]
+        colInd = -1
+        for i in range(5,0,-1):
+            if i < len(lines) and lines[i][-2] == "^":
+                carrotLine = lines[1].rstrip()
+                brktInd = carrotLine.find("]")
+                colInd = len(carrotLine[(brktInd + 2):])
+        
+        if colInd < 0:
+            print "Unable to find ^ marker when parsing SBT output."
+            colInd = 0
         
         print '%s <a href="txmt://open?url=file://%s&line=%s&column=%d">%s:%s</a>: %s' % (
             label, fn, lineNo, colInd, short_name, lineNo, errText
