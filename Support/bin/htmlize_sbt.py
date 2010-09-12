@@ -47,7 +47,7 @@ while lines:
         colInd = -1
         for i in range(5,0,-1):
             if i < len(lines) and lines[i][-2] == "^":
-                carrotLine = lines[1].rstrip()
+                carrotLine = lines[i].rstrip()
                 brktInd = carrotLine.find("]")
                 colInd = len(carrotLine[(brktInd + 2):])
         
