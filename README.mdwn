@@ -1,0 +1,31 @@
+SBT.tmbundle: a [TextMate](http://macromates.com/) bundle for the [Simple Build Tool](http://code.google.com/p/simple-build-tool/).
+==========================
+
+This is a minimal bundle for the TextMate editor to call the Simple Build Tool.  It currently only adds one command, Build cmd-B, that calls `sbt compile`.  It then parses the SBT output and makes any file references hyperlinks to the appropriate location in the file.
+
+If you're interested in SBT and Textmate, you may also be interested in this [SBT Console Textmate plugin](http://github.com/mads379/SBT-Console-Textmate-Plugin).  It is much more heavyweight, but probably also much better supported :).
+
+Installation
+------------
+
+This bundle requires a way to run SBT without ANSI colour control sequences in the output.  I use a similar technique to the Console plugin above: you must make a second SBT startup script to start SBT in this mode.  I use the following script in `/usr/local/bin/sbt_nocolours`:
+
+    #! /bin/sh
+    
+    # see http://code.google.com/p/simple-build-tool/
+    
+    java -Xmx512M -XX:+CMSClassUnloadingEnabled -Dsbt.log.noformat=true -XX:MaxPermSize=256m -jar /usr/local/lib/sbt-launch.jar "$@"
+
+You'd need to modify that to include your path to `sbt-launch.jar`.  I also assume that /usr/local/bin is in your Textmate path.
+
+Use
+---
+
+There is one command at present, although the support tools are there to make more fairly easily.  That command is 'Build - cmd-B'.  When executed from a Textmate project window, it:
+
+* saves all files in the project,
+* searches upwards from the project window until it finds a directory with both a `src` subdirectory and a `project/build.properties` file, and assumes that is the SBT project directory,
+* calls `sbt_nocolours compile` in that SBT project directory,
+* displays the output and makes any paths that appear in the output into hyperlinks.
+
+Making other Textmate commands that execute other SBT commands would be trivial.  However, the parsing and display out output currently occurs when the sbt command completes, which makes the incremental commands less useful.
