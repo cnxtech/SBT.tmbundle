@@ -4,6 +4,12 @@
 <dict>
 	<key>name</key>
 	<string>SBT</string>
+	<key>ordering</key>
+	<array>
+		<string>5074E0CE-8FF4-4ADD-86BE-579E825348F2</string>
+		<string>F21F96F4-709D-47DE-BCFC-41D2A5D1985D</string>
+		<string>55B3AC64-446A-4A02-A9F9-2F28132C7710</string>
+	</array>
 	<key>uuid</key>
 	<string>E06D047F-DE9D-4534-997D-FC3FDA454898</string>
 </dict>

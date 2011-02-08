@@ -9,19 +9,15 @@
 
 PIPE_NAME='sbt_command_pipe'
 
-echo "compile" &gt; ${PIPE_NAME}
+echo "exit" &gt; ${PIPE_NAME}
 </string>
 	<key>input</key>
 	<string>none</string>
-	<key>keyEquivalent</key>
-	<string>@b</string>
 	<key>name</key>
-	<string>Build</string>
+	<string>Exit SBT</string>
 	<key>output</key>
 	<string>showAsTooltip</string>
-	<key>scope</key>
-	<string>source.scala</string>
 	<key>uuid</key>
-	<string>5074E0CE-8FF4-4ADD-86BE-579E825348F2</string>
+	<string>F21F96F4-709D-47DE-BCFC-41D2A5D1985D</string>
 </dict>
 </plist>
