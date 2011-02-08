@@ -22,9 +22,10 @@ sys.stdout.flush()
 
 ## read all data from stdin
 
-lines=deque(sys.stdin.readlines())
+lines=deque()
+lines.append(sys.stdin.readline())
 
-while lines:
+while len(lines) > 0:
     line = lines.popleft().rstrip()
     
     match = matcher.search(line)
@@ -45,6 +46,14 @@ while lines:
             short_name = fn
 
         colInd = -1
+
+        # read the next few lines into the buffer
+        while len(lines) < 5:
+            nextline = sys.stdin.readline()
+            if len(nextline) == 0:
+                break
+            lines.append(nextline)
+        
         for i in range(5,0,-1):
             if i < len(lines) and lines[i][-2] == "^":
                 carrotLine = lines[i].rstrip()
@@ -62,6 +71,11 @@ while lines:
 
     print "</pre>"
     sys.stdout.flush()
+
+    if len(lines) == 0:
+        nextline = sys.stdin.readline()
+        if len(nextline) != 0:
+            lines.append(nextline)
 
 print """
     </body>
