@@ -9,6 +9,11 @@
 
 PIPE_NAME='sbt_command_pipe'
 
+if [ ! -p ${PIPE_NAME} ] ; then
+  echo "Command pipe non existant: ${PIPE_NAME}"
+  exit 1
+fi
+
 echo "exit" &gt; ${PIPE_NAME}
 </string>
 	<key>input</key>
