@@ -5,7 +5,12 @@
 	<key>beforeRunningCommand</key>
 	<string>saveModifiedFiles</string>
 	<key>command</key>
-	<string>cd `"$TM_BUNDLE_SUPPORT/bin/find_proj.py" "$TM_PROJECT_DIRECTORY"`
+	<string>PROJ=`"$TM_BUNDLE_SUPPORT/bin/find_proj.py" "$TM_PROJECT_DIRECTORY"`
+if [ -z $PROJ ]; then
+    echo "Could not find project directory"
+    exit 1
+fi
+cd $PROJ
 
 echo "&lt;PRE&gt;"
 echo "TextMate Project Dir: $TM_PROJECT_DIRECTORY"

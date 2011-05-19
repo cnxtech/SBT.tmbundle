@@ -48,13 +48,13 @@ while len(lines) > 0:
         colInd = -1
 
         # read the next few lines into the buffer
-        while len(lines) < 5:
+        while len(lines) < 6:
             nextline = sys.stdin.readline()
             if len(nextline) == 0:
                 break
             lines.append(nextline)
         
-        for i in range(5,0,-1):
+        for i in range(6,0,-1):
             if i < len(lines) and lines[i][-2] == "^":
                 carrotLine = lines[i].rstrip()
                 brktInd = carrotLine.find("]")
